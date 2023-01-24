@@ -114,12 +114,16 @@ const displayCartItems = (cartItem, product) => {
 
       cartItemSettingsDelete.addEventListener(
         "click",
-        (deleteItem = () => {
-          const itemToDelete = cartContent.findIndex((itemInCart) => cartItem.id === itemInCart.id && cartItem.color === itemInCart.color); // donne l'index de l'article cliqué
-          cartContent.splice(itemToDelete); // supprime du cart l'article cliqué de façon permanente
-
-          const articleToDelete = document.querySelector(`article[data-id="${cartItem.id}"][data-color="${cartItem.color}"]`); // pointe l'article correspondant à l'item
-          articleToDelete.remove(); // supprime l'article du HTML
+        (deleteItem = (event) => {
+          if (confirm("Êtes-vous sûr(e) de vouloir supprimer cet article ?\nCliquez sur OK pour confirmer.") == true) {
+            const itemToDelete = cartContent.findIndex((itemInCart) => cartItem.id === itemInCart.id && cartItem.color === itemInCart.color); // donne l'index de l'article cliqué
+            cartContent.splice(itemToDelete); // supprime du cart l'article cliqué de façon permanente
+            
+            const articleToDelete = document.querySelector(`article[data-id="${cartItem.id}"][data-color="${cartItem.color}"]`); // pointe l'article correspondant à l'item
+            articleToDelete.remove(); // supprime l'article du HTML
+          }else {
+          event.preventDefault();
+          };
 
           updateQuantityAndPrice();
           storage();

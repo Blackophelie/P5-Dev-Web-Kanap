@@ -6,49 +6,46 @@ fetch("http://localhost:3000/api/products/" + itemId) // Requête pour récupér
 
 const displayProduct = (product) => {
   const createImg = () => {
-  const img = document.createElement("img");
-  img.setAttribute("src", product.imageUrl);
-  img.setAttribute("alt", product.altTxt);
-  // img crée avec 2 attributs
-  const itemImg = document.querySelector(".item__img");
-  itemImg.append(img);
-  // .itemImg crée , parent de img -> insère la photo de l'article
+    const img = document.createElement("img");
+    img.setAttribute("src", product.imageUrl);
+    img.setAttribute("alt", product.altTxt);
+    // img crée avec 2 attributs
+    const itemImg = document.querySelector(".item__img");
+    itemImg.append(img);
+    // .itemImg crée , parent de img -> insère la photo de l'article
   };
   createImg();
   
-  const createTitle = () => {
   const itemTitle = document.querySelector("#title");
   itemTitle.textContent = product.name;
   // insère le name du produit dans #title
-  };
-  createTitle();
-
+  
   const createPrice = () => {
-  const itemPrice = document.querySelector("#price");
-  itemPrice.textContent = product.price;
-  // insère le price du produit dans #price
+    const itemPrice = document.querySelector("#price");
+    itemPrice.textContent = product.price;
+    // insère le price du produit dans #price
   };
   createPrice();
 
-const createDecsription = () => {
-  const itemDescription = document.getElementById("description");
-  itemDescription.textContent = product.description;
-  // insère la description du produit dans #description
-};
-createDecsription();
+  const createDecsription = () => {
+    const itemDescription = document.getElementById("description");
+    itemDescription.textContent = product.description;
+    // insère la description du produit dans #description
+  };
+  createDecsription();
 
-const createColors = () => {
-  const itemColors = document.getElementById("colors"); // pointe vers #colors
-  const colorsList = product.colors;
-  for (let i = 0; i < colorsList.length; i++) {
-    // Pour chaque élément de colorsList, crée une ligne dans la liste déroulante
-    const colorOption = document.createElement("option");
-    // chaque ligne de la liste déroulante est une option
-    colorOption.textContent = colorsList[i]; // ajoute toutes les options disponibles à la liste
-    itemColors.appendChild(colorOption); // colorOption est créée en tant qu'enfant d'itemColors (pour chaque élément de la liste)
-  }
-};
-createColors();
+  const createColors = () => {
+    const itemColors = document.getElementById("colors"); // pointe vers #colors
+    const colorsList = product.colors;
+    for (let i = 0; i < colorsList.length; i++) {
+      // Pour chaque élément de colorsList, crée une ligne dans la liste déroulante
+      const colorOption = document.createElement("option");
+      // chaque ligne de la liste déroulante est une option
+      colorOption.textContent = colorsList[i]; // ajoute toutes les options disponibles à la liste
+      itemColors.appendChild(colorOption); // colorOption est créée en tant qu'enfant d'itemColors (pour chaque élément de la liste)
+    }
+  };
+  createColors();
 
   const addToCart = document.querySelector("#addToCart");
   // lors du click, les valeurs de colors et quantity sont verifiées (non nulles)
@@ -85,8 +82,10 @@ createColors();
 
       localStorage.setItem("cart", JSON.stringify(cartContent));
       // transforme le panier objet en string JSON
-
-      window.location.href = "cart.html"; // redirige vers le panier
+      if (confirm("L'article " + itemTitle.textContent + " (couleur : " + itemColor + ", qnté : " + itemQuantity + ") a été ajouté au panier\nPour aller au panier, cliquez sur OK.\nPour continuer vos achats, cliquez sur Annuler")) {
+        window.location.href = "cart.html"; // redirige vers le panier
+      }
+      
     });
   }
 };
