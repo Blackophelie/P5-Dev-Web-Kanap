@@ -114,8 +114,9 @@ const displayCartItems = (cartItem, product) => {
 
       cartItemSettingsDelete.addEventListener(
         "click",
-        (deleteItem = (event) => {
-          if (confirm("Êtes-vous sûr(e) de vouloir supprimer cet article ?\nCliquez sur OK pour confirmer.") == true) {
+        (deleteItem = (event) => { // pour supprimer l'article du cahce et du HTML lors du click sur Supprimer
+          if (confirm("Êtes-vous sûr(e) de vouloir supprimer cet article ?\nCliquez sur OK pour confirmer.") == true) { 
+            // demande confirmation de la suppression de l'article
             const itemToDelete = cartContent.findIndex((itemInCart) => cartItem.id === itemInCart.id && cartItem.color === itemInCart.color); // donne l'index de l'article cliqué
             cartContent.splice(itemToDelete); // supprime du cart l'article cliqué de façon permanente
             
@@ -188,7 +189,7 @@ const storage = () => {
 updateQuantityAndPrice();
 storage();
 
-// --------------------------------------- Formulaire---------------------------------- //
+// --------------------------- Formulaire ---------------------------------- //
 
 const firstNameInput = document.querySelector("#firstName"); // pointe vers l'input prénom
 const lastNameInput = document.querySelector("#lastName"); // pointe vers l'input nom
@@ -322,7 +323,7 @@ orderButton.addEventListener("click", (event) => {
 
   let body = {
     // crée le body pour le fetch
-    contact: {
+    contact: { // crée le contact
       firstName: firstNameInput.value,
       lastName: lastNameInput.value,
       address: addressInput.value,
@@ -349,8 +350,7 @@ orderButton.addEventListener("click", (event) => {
   })
     .then((res) => res.json())
     .then((products) => {
-      const orderId = products.orderId;
-      window.location.href = "/front/html/confirmation.html" + "?orderId=" + orderId;
-      // console.log("/front/html/confirmation.html" + "?orderId=" + orderId);
+      const orderId = products.orderId; // récupère l'orderId
+      window.location.href = "/front/html/confirmation.html" + "?orderId=" + orderId; // redirige vers la page de confirmation (insertion de l'orderId dans l'URL)
     });
 });
