@@ -1,18 +1,18 @@
-const getOrderId = () => { 
+const getOrderId = () => { // pour récupérer l'orderId dans URLParams
    const windowSearch = window.location.search;
    const urlParams = new URLSearchParams(windowSearch);
-   return urlParams.get("orderId"); // renvoie l'orderId récupéré dans URLSearchParams
+   return urlParams.get("orderId"); // renvoie l'orderId récupéré dans l'url
    }
 const orderId = getOrderId();
    
-const displayOrderId = () => { // insère l'orderId dans #orderId
-   const orderIdItem = document.getElementById("orderId");
-     orderIdItem.textContent = orderId;
+const displayOrderId = () => { // insère l'orderId dans #orderId pour affichage sur la page
+   const orderIdItem = document.getElementById("orderId"); // pointe vers #orderId
+     orderIdItem.textContent = orderId; // insère orderId
 }
 displayOrderId();
 
-const removeCache = () => { // pour vider le cache qprès confirmation de la commande
-   const cache = window.localStorage;
-   cache.clear();
+const removeCartItems = () => { // pour vider le cache qprès confirmation de la commande
+   const cartItems = window.localStorage;
+   cartItems.clear();
 }
-removeCache();
+removeCartItems();
