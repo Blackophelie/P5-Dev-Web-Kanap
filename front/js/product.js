@@ -82,7 +82,7 @@ const displayProduct = (product) => {
 
       localStorage.setItem("cart", JSON.stringify(cartContent));
       // transforme le panier objet en string JSON
-      if (confirm("L'article " + itemTitle.textContent + " (couleur : " + itemColor + ", qnté : " + itemQuantity + ") a été ajouté au panier\nPour aller au panier, cliquez sur OK.\nPour continuer vos achats, cliquez sur Annuler")) { // demande de confirmation pour aller au panier
+      if (confirm("L'article " + itemTitle.textContent + "a été ajouté au panier (qnté : " + itemQuantity  + ", couleur : " + itemColor + ")\nPour aller au panier, cliquez sur OK.\nPour continuer vos achats, cliquez sur Annuler")) { // demande de confirmation pour aller au panier
         window.location.href = "cart.html"; // redirige vers le panier
       }
       

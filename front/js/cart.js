@@ -15,7 +15,6 @@ const updateQuantityAndPrice = () => {
   const articles = document.querySelectorAll("article.cart__item"); // pointe vers toute classe cart__item contenue dans chaque article
 
   articles.forEach((article) => {
-    //
     const articleQuantity = article.querySelector(".itemQuantity").value; // récupère la value de la classe itemQuantity
     totalQuantity += parseInt(articleQuantity); // parseInt convertit une string en number
     const articlePrice = parseInt(article.querySelector(".cart__item__content__description p:nth-of-type(2)").textContent); // récupère le contenu string du 2nd p (correspond à la quantité) et le transforme en number
@@ -78,25 +77,21 @@ const displayCartItems = (cartItem, product) => {
       };
       createItemDescription();
 
-      const createItemSettings = () => {};
       const cartItemSettings = document.createElement("div");
       cartItemSettings.classList.add("cart__item__content__settings");
       cartItemContent.appendChild(cartItemSettings);
       //div settings créée avec sa classe
 
-      const createSettingsQuantity = () => {};
       const cartItemSettingsQuantity = document.createElement("div");
       cartItemSettingsQuantity.classList.add("cart__item__content__settings__quantity");
       cartItemSettings.appendChild(cartItemSettingsQuantity);
       // div quantity créée avec sa classe
 
-      const createItemQuantity = () => {};
       const cartItemQuantity = document.createElement("p");
       cartItemQuantity.textContent = "Qté : ";
       cartItemSettingsQuantity.appendChild(cartItemQuantity);
       // p quantity créé
 
-      const createInputQuantity = () => {};
       const itemQuantityInput = document.createElement("input");
       itemQuantityInput.type = "number";
       itemQuantityInput.classList.add("itemQuantity");
@@ -107,7 +102,6 @@ const displayCartItems = (cartItem, product) => {
       cartItemSettingsQuantity.appendChild(itemQuantityInput);
       // input quantity créé avec ses attributs
 
-      const createSettingsDelete = () => {};
       const cartItemSettingsDelete = document.createElement("div");
       cartItemSettingsDelete.classList.add("cart__item__content__settings__delete");
       cartItemSettings.appendChild(cartItemSettingsDelete);
@@ -278,35 +272,35 @@ orderButton.addEventListener("click", (event) => {
   let emailInputContent = emailInput.value; // donne la valeur de l'input prénom (string)
 
   let nameRegexFNTest = nameRegex.test(firstNameInputContent); // teste la string dans input prénom et retourne true ou false (boolean)
-  let nameRegexLNTest = nameRegex.test(lastNameInputContent); // teste la string dans input prénom et retourne true ou false (boolean)
-  let addressRegexFNTest = nameRegex.test(addressInputContent); // teste la string dans input prénom et retourne true ou false (boolean)
-  let cityRegexFNTest = nameRegex.test(cityInputContent); // teste la string dans input prénom et retourne true ou false (boolean)
-  let emailRegexFNTest = emailRegex.test(emailInputContent); // teste la string dans input prénom et retourne true ou false (boolean)
+  let nameRegexLNTest = nameRegex.test(lastNameInputContent);
+  let addressRegexFNTest = nameRegex.test(addressInputContent);
+  let cityRegexFNTest = nameRegex.test(cityInputContent);
+  let emailRegexFNTest = emailRegex.test(emailInputContent);
 
   if (nameRegexFNTest === false || (firstNameInputContent = "")) { // si la Regex est fausse ou l'input vide
-    alert("Veuillez vérifier le format du prénom"); // message d'alerte si problème dans un input
+  alert("Veuillez vérifier le format du prénom"); // message d'alerte si problème dans un input
     firstNameInput.focus(); // remet le curseur dans l'input
-    // event.preventDefault();
-    return; // pour arrêter
-  } else if (nameRegexLNTest === false || (lastNameInputContent = "")) { // si la Regex est fausse ou l'input vide
-    alert("Veuillez vérifier le format du nom"); // message d'alerte si problème dans un input
-    lastNameInput.focus(); // remet le curseur dans l'input
     event.preventDefault();
     return; // pour arrêter
-  } else if (addressRegexFNTest === false || (addressInputContent = "")) { // si la Regex est fausse ou l'input vide
+  } else if (nameRegexLNTest === false || (lastNameInputContent = "")) { 
+    alert("Veuillez vérifier le format du nom");
+    lastNameInput.focus();
     event.preventDefault();
-    alert("Veuillez vérifier le format de l'adresse "); // message d'alerte si problème dans un input
-    addressInput.focus(); // remet le curseur dans l'input
-    return; // pour arrêter
-  } else if (cityRegexFNTest === false || (cityInputContent = "")) { // si la Regex est fausse ou l'input vide
-    event.preventDefault();
-    alert("Veuillez vérifier le format de la ville"); // message d'alerte si problème dans un input
-    cityInput.focus(); // remet le curseur dans l'input
     return;
-  } else if (emailRegexFNTest === false || (emailInputContent = "")) { // si la Regex est fausse ou l'input vide
+  } else if (addressRegexFNTest === false || (addressInputContent = "")) {
     event.preventDefault();
-    alert("Veuillez vérifier le format de l'adresse e-mail"); // message d'alerte si problème dans un input
-    emailInput.focus(); // remet le curseur dans l'input
+    alert("Veuillez vérifier le format de l'adresse ");
+    addressInput.focus();
+    return;
+  } else if (cityRegexFNTest === false || (cityInputContent = "")) {
+    event.preventDefault();
+    alert("Veuillez vérifier le format de la ville");
+    cityInput.focus();
+    return;
+  } else if (emailRegexFNTest === false || (emailInputContent = "")) {
+    event.preventDefault();
+    alert("Veuillez vérifier le format de l'adresse e-mail");
+    emailInput.focus();
     return;
   }
     

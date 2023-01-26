@@ -11,7 +11,7 @@ const displayOrderId = () => { // insère l'orderId dans #orderId
 }
 displayOrderId();
 
-const removeCache = () => {
+const removeCache = () => { // pour vider le cache qprès confirmation de la commande
    const cache = window.localStorage;
    cache.clear();
 }
